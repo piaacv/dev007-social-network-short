@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+
+body{
+    background-color:whitesmoke;
+}
+
+h1{
+    font-family: 'Permanent Marker', cursive;
+}
+
+
+.logo-name{
+   display: inline-block;
+   margin-left: 80px;
+}
+
+
+
+.logo{
+    width: 50px;
+    animation: float 3 linear infinite;
+}
+
+@keyframes float{
+    0%, 100% {
+        transform: translateY(0rem);
+    }
+    50% {
+        transform: translateY(-3.5rem);
+    }
+}
+
+
+.login-with-google {
+    width: 200px;
+}
