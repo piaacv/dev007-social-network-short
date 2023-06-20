@@ -3,23 +3,42 @@
 
 body{
     background-color:whitesmoke;
+    
 }
+
 
 h1{
     font-family: 'Permanent Marker', cursive;
 }
 
+.header-section{
+background-color: red;
 
-.logo-name{
-   display: inline-block;
-   margin-left: 80px;
+
+
 }
 
 
+.logo-name{
+   display: block;
+   
+   
+}
 
-.logo{
+
+.header-section .logo{
+    display: flex;
+    justify-content: center;
     width: 50px;
-    animation: float 3 linear infinite;
+    animation: float 3s linear infinite;
+    padding-top: 60px;
+    
+    
+    
+    
+
+    
+    
 }
 
 @keyframes float{
@@ -27,7 +46,7 @@ h1{
         transform: translateY(0rem);
     }
     50% {
-        transform: translateY(-3.5rem);
+        transform: translateY(-1.5rem);
     }
 }
 
