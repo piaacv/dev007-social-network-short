@@ -1,25 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 
 
 body{
     background-color:whitesmoke;
+    
+    
+    
 }
+
 
 h1{
     font-family: 'Permanent Marker', cursive;
+    font-size: 40px;
+}
+
+.header-section{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+gap: 20px;
+flex-wrap: wrap;
+
 }
 
 
 .logo-name{
-   display: inline-block;
-   margin-left: 80px;
+   display: block;
+   text-align: center;
+   
+   
 }
 
 
-
-.logo{
-    width: 50px;
-    animation: float 3 linear infinite;
+.header-section .logo{
+    display: block;
+    width: 60px;
+    animation: float 3s linear infinite;
+    padding-top: 60px;
+    
+    
 }
 
 @keyframes float{
@@ -27,11 +49,105 @@ h1{
         transform: translateY(0rem);
     }
     50% {
-        transform: translateY(-3.5rem);
+        transform: translateY(-1.5rem);
     }
+}
+
+.header-section-login{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-login{
+    display: flex;
+    flex-direction: row;
+    width: 30px;
+    height: 40px;
+    
+}
+.logo-login-name{
+ display: flex;
+ flex-direction: row;
+ font-size: 30px;
+}
+
+
+.button-out{
+    border-style: none;
+    background-color: whitesmoke;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    margin-top: 40px;
+
+
+}
+
+.login-section{
+font-family: 'Montserrat', sans-serif;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 }
 
 
 .login-with-google {
     width: 200px;
+}
+
+
+
+.text-new-post{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    width: 300px;
+    text-align: center;
+    display: inline-flex;
+    margin-top: 50px;
+  
+    
+}
+
+.post-section{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.input-post{
+    width: 300px;
+    height: 50px;
+}
+
+
+.container-post{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+}
+
+
+.container-post_post {
+    text-align: start;
+    padding: 2px;
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+
+    border-style:solid;
+    border-radius: 5px;
+    background-color: white;
+    
+    
 }
