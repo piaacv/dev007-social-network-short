@@ -1,6 +1,6 @@
 // aqui exportaras las funciones que necesites
 
-import { addDoc, collection, getDocs} from "@firebase/firestore";
+import { addDoc, collection, getDocs, doc, deleteDoc} from "@firebase/firestore";
 import { auth, db } from "../firebase";
 
 export const myFunction = () => {
@@ -8,9 +8,10 @@ export const myFunction = () => {
   console.log('Hola mundo!');
 };
 
-export const createNewPost = (contentNewPost) => {
+export const createNewPost = (contentNewPost, usuario) => {
    return addDoc(collection(db, "post"), {
     contenido: contentNewPost,
+    usuario
   });
 };
 
@@ -18,6 +19,17 @@ export const getAllPost = () => {
   return getDocs(collection(db, "post"));
 };
 
+
+
+// export const deletePost = async (contentNewPost) => {
+//   const option = confirm('Confirma para borrar tu post');
+//     if (option === true) {
+//       await deleteDoc(doc(db, 'post'));
+      
+//     } else {
+//       onNavigate('/login');
+//     } }
+// ;
 
 
 
