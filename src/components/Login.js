@@ -1,8 +1,9 @@
-import { QuerySnapshot } from "firebase/firestore";
+import { onSnapshot } from "firebase/firestore";
 import { createNewPost, deletePost } from "../lib";
 import { getAllPost, LogOut } from "../lib/index"
 import { auth } from "../firebase";
 
+import OnlyPost from "./OnlyPost";
 
 export const Login = (onNavigate) => {
   const HomeDiv = document.createElement('div');
@@ -42,37 +43,57 @@ export const Login = (onNavigate) => {
   postSection.appendChild(post);
   postSection.appendChild(postButton);
 
-
+  HomeDiv.appendChild(headerSectionLogin);
+  HomeDiv.appendChild(postSection);
   
   const PostDiv = document.createElement('div')
   PostDiv.className = "container-post"
   PostDiv.id = "container_post"
-  const timeLineDiv = document.createElement ('div');
-  timeLineDiv.className = "container-timeline"
+  HomeDiv.appendChild(PostDiv);
+  
   postButton.textContent = 'Publicar';
   logo.setAttribute('src', '/images/logo-amateur.png')
   logoName.textContent = 'Amateur'
 
 
   // mostrar historial de post en timelineDiv
-
-  // HomeDiv.querySelector(".container-post").innerHTML = "";
-  getAllPost().then((QuerySnapshot) => {
-    QuerySnapshot.forEach((doc) => {
-      HomeDiv.querySelector(".container-post").innerHTML += `
-      <div class = "container-post_post">
-      <p>${doc.data().contenido}</p>
-      <h6>${doc.data().userName}</h6>
-      <button type="button" class="delete-post-button" id="${doc.id}">X</button>
-      </div>
-      `;
-      
+ 
+  onSnapshot(getAllPost(), (querySnapshot) => {
+ 
+PostDiv.innerHTML = ""
+    querySnapshot.forEach((doc) => {
+      const savedPost = doc.data();
+      console.log(doc.data())
+      PostDiv.innerHTML +=`
+     <div class = "container-post_post">
+   <p>${savedPost.contenido}</p>
+     <h6>${savedPost.userName}</h6>
+    <button type="button" class="delete-post-button" id="${doc.id}">X</button>
+   </div>`
+ 
     });
     postDelete()
   });
 
+
+   postButton.addEventListener('click', () => {
+    if (post.value === "") {
+      alert (" Ingresa tu comentario para publicar tu post")
+    } else {
+    let contentNewPost = post.value;
+    console.log(contentNewPost)
+    let usuario = auth.currentUser.email;
+    createNewPost(contentNewPost, usuario).then(() => {
+      
+      
+      post.value = ""
+    });
+  }
+  });
+
+
 function postDelete() {
-  const buttonsId = HomeDiv.querySelectorAll(".delete-post-button")
+  const buttonsId = HomeDiv.querySelectorAll(".delete-post-button") 
   buttonsId.forEach((button) => {
    button.addEventListener('click', async () => {
      console.log(button.id);
@@ -84,26 +105,12 @@ function postDelete() {
 }
 
   
-  postButton.addEventListener('click', () => {
-    if (post.value === "") {
-      alert (" Ingresa tu comentario para publicar tu post")
-    } else {
-    let contentNewPost = post.value;
-    console.log(contentNewPost)
-    let usuario = auth.currentUser.email;
-    createNewPost(contentNewPost, usuario).then(() => {
-      post.value = ""
-      
-    });
-  }
-  });
+ 
   buttonLogOut.addEventListener('click', () => {
     LogOut().then(() => onNavigate('/'));
   });
 
-  HomeDiv.appendChild(headerSectionLogin);
-  HomeDiv.appendChild(postSection);
-  HomeDiv.appendChild(timeLineDiv);
-  HomeDiv.appendChild(PostDiv);
+  
+ 
   return HomeDiv;
 };
