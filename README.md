@@ -8,4 +8,4 @@ Por ejemplo, buscar reemplazo de último minuto para partido.
 El/la usuario puede acceder ingresando con su cuenta de Google. 
 Además puede publicar post y borrarlo. 
 Ver post de los demás usuarios.
-Interfaz será [desplegada en Firebase](https://amateur-41afd.web.app/)
+Interfaz [desplegada en Firebase](https://amateur-41afd.web.app/)
