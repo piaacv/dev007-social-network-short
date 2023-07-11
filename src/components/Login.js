@@ -64,14 +64,21 @@ export const Login = (onNavigate) => {
     PostDiv.innerHTML = '';
     querySnapshot.forEach((doc) => {
       const savedPost = doc.data();
-      PostDiv.innerHTML += `
+      const html = `
      <div class = "container-post_post">
    <p>${savedPost.contenido}</p>
      <h6>${savedPost.userName}</h6>
     <button type="button" class="delete-post-button" id="${doc.id}">X</button>
    </div>`;
+
+      PostDiv.insertAdjacentHTML('beforeend', html);
+      const deleteButtonElemnt = PostDiv.lastElementChild.lastElementChild;
+      if (auth.currentUser.displayName !== savedPost.userName) {
+        deleteButtonElemnt.disabled = true;
+      } else {
+        postDelete();
+      }
     });
-    postDelete();
   });
 
   postButton.addEventListener('click', () => {
