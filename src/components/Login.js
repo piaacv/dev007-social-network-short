@@ -53,15 +53,13 @@ export const Login = (onNavigate) => {
 
   function postDelete() {
     const buttonsId = HomeDiv.querySelectorAll('.delete-post-button');
-    if(buttonsId) {
     buttonsId.forEach((button) => {
       button.addEventListener('click', async () => {
         await deletePost(button.id);
       });
     });
-  };
-  };
-  // mostrar historial de post en timelineDiv
+  }
+
   onSnapshot(getAllPost(), (querySnapshot) => {
     PostDiv.innerHTML = '';
     querySnapshot.forEach((doc) => {
