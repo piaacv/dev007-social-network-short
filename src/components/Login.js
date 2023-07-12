@@ -53,12 +53,14 @@ export const Login = (onNavigate) => {
 
   function postDelete() {
     const buttonsId = HomeDiv.querySelectorAll('.delete-post-button');
+    if(buttonsId) {
     buttonsId.forEach((button) => {
       button.addEventListener('click', async () => {
         await deletePost(button.id);
       });
     });
-  }
+  };
+  };
   // mostrar historial de post en timelineDiv
   onSnapshot(getAllPost(), (querySnapshot) => {
     PostDiv.innerHTML = '';
@@ -75,10 +77,9 @@ export const Login = (onNavigate) => {
       const deleteButtonElemnt = PostDiv.lastElementChild.lastElementChild;
       if (auth.currentUser.displayName !== savedPost.userName) {
         deleteButtonElemnt.disabled = true;
-      } else {
-        postDelete();
       }
     });
+    postDelete();
   });
 
   postButton.addEventListener('click', () => {
