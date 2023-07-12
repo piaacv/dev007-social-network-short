@@ -59,7 +59,7 @@ export const Login = (onNavigate) => {
       });
     });
   }
-  // mostrar historial de post en timelineDiv
+
   onSnapshot(getAllPost(), (querySnapshot) => {
     PostDiv.innerHTML = '';
     querySnapshot.forEach((doc) => {
@@ -75,10 +75,9 @@ export const Login = (onNavigate) => {
       const deleteButtonElemnt = PostDiv.lastElementChild.lastElementChild;
       if (auth.currentUser.displayName !== savedPost.userName) {
         deleteButtonElemnt.disabled = true;
-      } else {
-        postDelete();
       }
     });
+    postDelete();
   });
 
   postButton.addEventListener('click', () => {
